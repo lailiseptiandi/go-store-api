@@ -12,7 +12,7 @@ import (
 func (h *globalHandler) GetCategory(c *gin.Context) {
 	getCategory, err := h.globalService.GetCategory()
 	if err != nil {
-		response := helpers.APIResponse("Create not found", http.StatusBadRequest, "error", nil)
+		response := helpers.APIResponse("category not found", http.StatusBadRequest, "error", nil)
 		c.JSON(http.StatusBadRequest, response)
 		return
 	}
@@ -115,11 +115,8 @@ func (h *globalHandler) UpdateCategory(c *gin.Context) {
 func (h *globalHandler) DeleteGategory(c *gin.Context) {
 	var inputID entity.CategoryDetailInput
 	err := c.ShouldBindUri(&inputID)
-
 	if err != nil {
-		errors := helpers.FormValidationError(err)
-		errorMessage := gin.H{"error": errors}
-		response := helpers.APIResponse("Category Not Found", http.StatusBadRequest, "error", errorMessage)
+		response := helpers.APIResponse("Category Not Found", http.StatusBadRequest, "error", nil)
 		c.JSON(http.StatusBadRequest, response)
 		return
 	}

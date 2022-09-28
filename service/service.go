@@ -21,6 +21,13 @@ type Service interface {
 	CategoryByID(ID int) (model.Category, error)
 	UpdateCategory(inputID entity.CategoryDetailInput, input entity.CreateCategoryInput) (model.Category, error)
 	DeleteCategory(ID int) (model.Category, error)
+
+	// product
+	GetProduct() ([]model.Product, error)
+	CreateProduct(product entity.CreateProduct) (model.Product, error)
+	ProductByID(ID int) (model.Product, error)
+	UpdateProduct(ID int, input entity.CreateProduct) (model.Product, error)
+	DeleteProduct(ID int) error
 }
 
 type service struct {

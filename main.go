@@ -33,5 +33,12 @@ func main() {
 	router.PUT("category/:id", middleware.AuthMiddleware(authService, globalService), globalHandler.UpdateCategory)
 	router.DELETE("category/:id", middleware.AuthMiddleware(authService, globalService), globalHandler.DeleteGategory)
 
+	// product
+	router.GET("product", globalHandler.GetProduct)
+	router.POST("product", globalHandler.CreateProduct)
+	router.GET("product/:id", globalHandler.ProductByID)
+	router.PUT("product/:id", globalHandler.UpdateProduct)
+	router.DELETE("product/:id", globalHandler.DeleteProduct)
+
 	router.Run()
 }

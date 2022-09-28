@@ -23,6 +23,11 @@ type (
 		DeleteCategory(ID int) (model.Category, error)
 
 		// product
+		GetProduct() ([]model.Product, error)
+		CreateProduct(product model.Product) (model.Product, error)
+		ProductByID(ID int) (model.Product, error)
+		UpdateProduct(ID int, product model.Product) (model.Product, error)
+		DeleteProduct(ID int) error
 	}
 )
 type repository struct {
