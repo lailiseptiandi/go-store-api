@@ -35,10 +35,10 @@ func main() {
 
 	// product
 	router.GET("product", globalHandler.GetProduct)
-	router.POST("product", globalHandler.CreateProduct)
+	router.POST("product", middleware.AuthMiddleware(authService, globalService), globalHandler.CreateProduct)
 	router.GET("product/:id", globalHandler.ProductByID)
-	router.PUT("product/:id", globalHandler.UpdateProduct)
-	router.DELETE("product/:id", globalHandler.DeleteProduct)
+	router.PUT("product/:id", middleware.AuthMiddleware(authService, globalService), globalHandler.UpdateProduct)
+	router.DELETE("product/:id", middleware.AuthMiddleware(authService, globalService), globalHandler.DeleteProduct)
 
 	router.Run()
 }
