@@ -14,3 +14,14 @@ type (
 		ID int `uri:"id" binding:"required"`
 	}
 )
+
+type (
+	StoreImageByProduct struct {
+		ImageName string `json:"image_name"`
+		ProductID int    `json:"product_id"`
+	}
+
+	ImageByProduct struct {
+		ID int `uri:"id" binding:"required"`
+	}
+)

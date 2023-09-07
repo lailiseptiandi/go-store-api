@@ -2,7 +2,7 @@ package repository
 
 import (
 	"github.com/lailiseptiandi/golang-toko-online/config"
-	"github.com/lailiseptiandi/golang-toko-online/model"
+	"github.com/lailiseptiandi/golang-toko-online/models"
 	"gorm.io/gorm"
 )
 
@@ -10,24 +10,31 @@ type (
 	Repository interface {
 
 		// User
-		SaveUser(user model.User) (model.User, error)
-		FindByEmail(email string) (model.User, error)
-		FindByID(ID int) (model.User, error)
-		UpdateUser(user model.User) (model.User, error)
+		SaveUser(user models.User) (models.User, error)
+		FindByEmail(email string) (models.User, error)
+		FindByID(ID int) (models.User, error)
+		UpdateUser(user models.User) (models.User, error)
 
 		// category
-		GetCategory() ([]model.Category, error)
-		CreateCategory(category model.Category) (model.Category, error)
-		CategoryBYID(ID int) (model.Category, error)
-		UpdateCategory(category model.Category) (model.Category, error)
-		DeleteCategory(ID int) (model.Category, error)
+		GetCategory() ([]models.Category, error)
+		CreateCategory(category models.Category) (models.Category, error)
+		CategoryBYID(ID int) (models.Category, error)
+		UpdateCategory(category models.Category) (models.Category, error)
+		DeleteCategory(ID int) (models.Category, error)
 
 		// product
-		GetProduct() ([]model.Product, error)
-		CreateProduct(product model.Product) (model.Product, error)
-		ProductByID(ID int) (model.Product, error)
-		UpdateProduct(ID int, product model.Product) (model.Product, error)
+		GetProduct() ([]models.Product, error)
+		CreateProduct(product models.Product) (models.Product, error)
+		ProductByID(ID int) (models.Product, error)
+		UpdateProduct(ID int, product models.Product) (models.Product, error)
 		DeleteProduct(ID int) error
+
+		// product images
+		GetProductImage() ([]models.ProductImage, error)
+		StoreProductImage(models.ProductImage) (models.ProductImage, error)
+		ProductImageByID(int) ([]models.ProductImage, error)
+		UpdateProductImage(int, models.ProductImage) (models.ProductImage, error)
+		DeleteProductImage(int) error
 	}
 )
 type repository struct {
