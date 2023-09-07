@@ -3,8 +3,8 @@ package service
 import (
 	"errors"
 
-	"github.com/lailiseptiandi/golang-toko-online/entity"
-	"github.com/lailiseptiandi/golang-toko-online/models"
+	"github.com/lailiseptiandi/go-store-api/entity"
+	"github.com/lailiseptiandi/go-store-api/models"
 	"golang.org/x/crypto/bcrypt"
 )
 

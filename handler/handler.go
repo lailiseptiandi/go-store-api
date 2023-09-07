@@ -1,8 +1,8 @@
 package handler
 
 import (
-	"github.com/lailiseptiandi/golang-toko-online/config"
-	"github.com/lailiseptiandi/golang-toko-online/service"
+	"github.com/lailiseptiandi/go-store-api/config"
+	"github.com/lailiseptiandi/go-store-api/service"
 )
 
 type globalHandler struct {

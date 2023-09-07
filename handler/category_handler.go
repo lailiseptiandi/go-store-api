@@ -4,8 +4,8 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
-	"github.com/lailiseptiandi/golang-toko-online/entity"
-	"github.com/lailiseptiandi/golang-toko-online/helpers"
+	"github.com/lailiseptiandi/go-store-api/entity"
+	"github.com/lailiseptiandi/go-store-api/helpers"
 )
 
 func (h *globalHandler) GetCategory(c *gin.Context) {

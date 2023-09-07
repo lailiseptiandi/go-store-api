@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/lailiseptiandi/golang-toko-online/models"
+	"github.com/lailiseptiandi/go-store-api/models"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )

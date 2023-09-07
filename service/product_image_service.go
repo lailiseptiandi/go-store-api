@@ -1,6 +1,6 @@
 package service
 
-import "github.com/lailiseptiandi/golang-toko-online/models"
+import "github.com/lailiseptiandi/go-store-api/models"
 
 func (s *service) GetImageByProduct(ID int) ([]models.ProductImage, error) {
 	image, err := s.repository.ProductImageByID(ID)

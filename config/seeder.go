@@ -1,7 +1,7 @@
 package config
 
 import (
-	"github.com/lailiseptiandi/golang-toko-online/models"
+	"github.com/lailiseptiandi/go-store-api/models"
 	"golang.org/x/crypto/bcrypt"
 	"gorm.io/gorm"
 )

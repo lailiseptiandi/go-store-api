@@ -1,4 +1,4 @@
-module github.com/lailiseptiandi/golang-toko-online
+module github.com/lailiseptiandi/go-store-api
 
 go 1.18
 

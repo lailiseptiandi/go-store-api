@@ -5,8 +5,8 @@ import (
 	"os"
 
 	"github.com/gin-gonic/gin"
-	"github.com/lailiseptiandi/golang-toko-online/config"
-	"github.com/lailiseptiandi/golang-toko-online/routers"
+	"github.com/lailiseptiandi/go-store-api/config"
+	"github.com/lailiseptiandi/go-store-api/routers"
 	"gorm.io/gorm"
 )
 

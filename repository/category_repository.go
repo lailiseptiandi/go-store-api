@@ -1,6 +1,6 @@
 package repository
 
-import "github.com/lailiseptiandi/golang-toko-online/models"
+import "github.com/lailiseptiandi/go-store-api/models"
 
 func (r *repository) GetCategory() ([]models.Category, error) {
 

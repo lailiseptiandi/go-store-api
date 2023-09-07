@@ -6,8 +6,8 @@ import (
 	"strings"
 
 	"github.com/gosimple/slug"
-	"github.com/lailiseptiandi/golang-toko-online/entity"
-	"github.com/lailiseptiandi/golang-toko-online/models"
+	"github.com/lailiseptiandi/go-store-api/entity"
+	"github.com/lailiseptiandi/go-store-api/models"
 )
 
 func (s *service) GetProduct() ([]models.Product, error) {
