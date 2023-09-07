@@ -20,6 +20,7 @@ func (h *globalHandler) GetCategory(c *gin.Context) {
 	formatter := service.FormatterCategory(getCategory)
 	response := helpers.APIResponse("List Category", http.StatusOK, "success", formatter)
 	c.JSON(http.StatusOK, response)
+	return
 }
 
 func (h *globalHandler) CreateCategory(c *gin.Context) {
@@ -45,6 +46,8 @@ func (h *globalHandler) CreateCategory(c *gin.Context) {
 	formatter := service.FormatCategory(newCategory)
 	response := helpers.APIResponse("Create category successfully", http.StatusOK, "success", formatter)
 	c.JSON(http.StatusOK, response)
+	return
+
 }
 
 func (h *globalHandler) DetailCategory(c *gin.Context) {
@@ -68,6 +71,8 @@ func (h *globalHandler) DetailCategory(c *gin.Context) {
 	formatter := service.FormatCategory(detailCategory)
 	response := helpers.APIResponse("Detail Category", http.StatusOK, "success", formatter)
 	c.JSON(http.StatusOK, response)
+	return
+
 }
 
 func (h *globalHandler) UpdateCategory(c *gin.Context) {
@@ -110,6 +115,7 @@ func (h *globalHandler) UpdateCategory(c *gin.Context) {
 	formatter := service.FormatCategory(updateCategory)
 	response := helpers.APIResponse("Update Category successfully", http.StatusOK, "success", formatter)
 	c.JSON(http.StatusOK, response)
+	return
 }
 
 func (h *globalHandler) DeleteGategory(c *gin.Context) {
@@ -125,4 +131,5 @@ func (h *globalHandler) DeleteGategory(c *gin.Context) {
 	formatter := service.FormatCategory(deleteCategory)
 	response := helpers.APIResponse("Category Deleted", http.StatusOK, "success", formatter)
 	c.JSON(http.StatusOK, response)
+	return
 }

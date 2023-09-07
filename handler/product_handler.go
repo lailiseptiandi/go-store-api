@@ -16,8 +16,9 @@ func (h *globalHandler) GetProduct(c *gin.Context) {
 		return
 	}
 
-	response := helpers.APIResponse("list product", http.StatusOK, "", product)
+	response := helpers.APIResponse("list product", http.StatusOK, "success", product)
 	c.JSON(http.StatusOK, response)
+	return
 }
 
 func (h *globalHandler) CreateProduct(c *gin.Context) {
@@ -40,6 +41,7 @@ func (h *globalHandler) CreateProduct(c *gin.Context) {
 	}
 	response := helpers.APIResponse("success created prodct", http.StatusOK, "success", product)
 	c.JSON(http.StatusOK, response)
+	return
 }
 
 func (h *globalHandler) UpdateProduct(c *gin.Context) {
@@ -69,6 +71,8 @@ func (h *globalHandler) UpdateProduct(c *gin.Context) {
 	}
 	response := helpers.APIResponse("success updated product", http.StatusBadRequest, "error", product)
 	c.JSON(http.StatusBadRequest, response)
+	return
+
 }
 
 func (h *globalHandler) ProductByID(c *gin.Context) {
@@ -88,8 +92,10 @@ func (h *globalHandler) ProductByID(c *gin.Context) {
 		return
 
 	}
-	response := helpers.APIResponse("success get detail product", http.StatusOK, "", product)
+	response := helpers.APIResponse("success get detail product", http.StatusOK, "success", product)
 	c.JSON(http.StatusOK, response)
+	return
+
 }
 
 func (h *globalHandler) DeleteProduct(c *gin.Context) {
@@ -106,6 +112,7 @@ func (h *globalHandler) DeleteProduct(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, response)
 		return
 	}
-	response := helpers.APIResponse("success deleted product", http.StatusOK, "", nil)
+	response := helpers.APIResponse("success deleted product", http.StatusOK, "success", nil)
 	c.JSON(http.StatusOK, response)
+	return
 }
