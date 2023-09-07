@@ -1,9 +1,9 @@
-package model
+package models
 
 import "time"
 
 type User struct {
-	ID        int
+	ID        int `gorm:"primarykey"`
 	Name      string
 	Email     string
 	Password  string
