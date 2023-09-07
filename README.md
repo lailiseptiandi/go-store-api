@@ -1,5 +1,5 @@
-# golang-toko-online
-Golang Toko Online is a learning project to create RestFull API.
+# Go-STORE-API-SIMPLE
+Go-STORE-API-SIMPLE is a learning project to create RestFull API.
 
 
 ## Feature
