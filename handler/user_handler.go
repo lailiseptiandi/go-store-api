@@ -7,7 +7,6 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/lailiseptiandi/golang-toko-online/entity"
 	"github.com/lailiseptiandi/golang-toko-online/helpers"
-	"github.com/lailiseptiandi/golang-toko-online/service"
 )
 
 func (h *globalHandler) RegisterUser(c *gin.Context) {
@@ -37,7 +36,7 @@ func (h *globalHandler) RegisterUser(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, response)
 		return
 	}
-	user := service.FormatUser(newUser, token)
+	user := entity.FormatUser(newUser, token)
 	response := helpers.APIResponse("Register account succesfully", http.StatusOK, "error", user)
 
 	c.JSON(http.StatusOK, response)
@@ -73,7 +72,7 @@ func (h *globalHandler) LoginUser(c *gin.Context) {
 		return
 	}
 
-	loginFormat := service.FormatUser(loginUser, token)
+	loginFormat := entity.FormatUser(loginUser, token)
 	response := helpers.APIResponse("Login successfully", http.StatusOK, "success", loginFormat)
 	c.JSON(http.StatusOK, response)
 
@@ -162,7 +161,7 @@ func (h *globalHandler) UpdateUser(c *gin.Context) {
 		return
 	}
 
-	formateUser := service.FormatUser(updateUser, token)
+	formateUser := entity.FormatUser(updateUser, token)
 	response := helpers.APIResponse("User successfully updated", http.StatusOK, "success", formateUser)
 	c.JSON(http.StatusOK, response)
 }
@@ -186,7 +185,7 @@ func (h *globalHandler) GetUserByID(c *gin.Context) {
 		return
 	}
 
-	formatUser := service.FormatDetailUser(user)
+	formatUser := entity.FormatDetailUser(user)
 	response := helpers.APIResponse("List User", http.StatusBadRequest, "success", formatUser)
 	c.JSON(http.StatusBadRequest, response)
 }

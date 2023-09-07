@@ -6,7 +6,6 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/lailiseptiandi/golang-toko-online/entity"
 	"github.com/lailiseptiandi/golang-toko-online/helpers"
-	"github.com/lailiseptiandi/golang-toko-online/service"
 )
 
 func (h *globalHandler) GetCategory(c *gin.Context) {
@@ -17,7 +16,7 @@ func (h *globalHandler) GetCategory(c *gin.Context) {
 		return
 	}
 
-	formatter := service.FormatterCategory(getCategory)
+	formatter := entity.FormatterCategory(getCategory)
 	response := helpers.APIResponse("List Category", http.StatusOK, "success", formatter)
 	c.JSON(http.StatusOK, response)
 	return
@@ -43,7 +42,7 @@ func (h *globalHandler) CreateCategory(c *gin.Context) {
 		return
 	}
 
-	formatter := service.FormatCategory(newCategory)
+	formatter := entity.FormatCategory(newCategory)
 	response := helpers.APIResponse("Create category successfully", http.StatusOK, "success", formatter)
 	c.JSON(http.StatusOK, response)
 	return
@@ -68,7 +67,7 @@ func (h *globalHandler) DetailCategory(c *gin.Context) {
 		return
 	}
 
-	formatter := service.FormatCategory(detailCategory)
+	formatter := entity.FormatCategory(detailCategory)
 	response := helpers.APIResponse("Detail Category", http.StatusOK, "success", formatter)
 	c.JSON(http.StatusOK, response)
 	return
@@ -112,7 +111,7 @@ func (h *globalHandler) UpdateCategory(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, response)
 		return
 	}
-	formatter := service.FormatCategory(updateCategory)
+	formatter := entity.FormatCategory(updateCategory)
 	response := helpers.APIResponse("Update Category successfully", http.StatusOK, "success", formatter)
 	c.JSON(http.StatusOK, response)
 	return
@@ -128,7 +127,7 @@ func (h *globalHandler) DeleteGategory(c *gin.Context) {
 	}
 	deleteCategory, _ := h.globalService.DeleteCategory(inputID.ID)
 
-	formatter := service.FormatCategory(deleteCategory)
+	formatter := entity.FormatCategory(deleteCategory)
 	response := helpers.APIResponse("Category Deleted", http.StatusOK, "success", formatter)
 	c.JSON(http.StatusOK, response)
 	return
