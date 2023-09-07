@@ -1,10 +1,8 @@
 package repository
 
-import (
-	"github.com/lailiseptiandi/golang-toko-online/model"
-)
+import "github.com/lailiseptiandi/golang-toko-online/models"
 
-func (r *repository) SaveUser(user model.User) (model.User, error) {
+func (r *repository) SaveUser(user models.User) (models.User, error) {
 	err := r.db.Create(&user).Error
 	if err != nil {
 		return user, err
@@ -12,9 +10,9 @@ func (r *repository) SaveUser(user model.User) (model.User, error) {
 	return user, nil
 }
 
-func (r *repository) FindByEmail(email string) (model.User, error) {
+func (r *repository) FindByEmail(email string) (models.User, error) {
 
-	var user model.User
+	var user models.User
 	err := r.db.Where("email= ?", email).Find(&user).Error
 	if err != nil {
 		return user, err
@@ -22,8 +20,8 @@ func (r *repository) FindByEmail(email string) (model.User, error) {
 	return user, nil
 }
 
-func (r *repository) FindByID(ID int) (model.User, error) {
-	var user model.User
+func (r *repository) FindByID(ID int) (models.User, error) {
+	var user models.User
 
 	err := r.db.Where("id = ?", ID).Find(&user).Error
 	if err != nil {
@@ -34,7 +32,7 @@ func (r *repository) FindByID(ID int) (model.User, error) {
 	return user, nil
 }
 
-func (r *repository) UpdateUser(user model.User) (model.User, error) {
+func (r *repository) UpdateUser(user models.User) (models.User, error) {
 	err := r.db.Save(&user).Error
 	if err != nil {
 		return user, err
