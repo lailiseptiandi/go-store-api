@@ -17,6 +17,7 @@ var (
 func main() {
 	config.LoadEnv()
 	config.MigrateDatabase(db)
+	config.Seeder(db)
 	defer config.DisconnectDB(db)
 
 	r := gin.Default()

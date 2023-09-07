@@ -48,6 +48,10 @@ func AuthMiddleware(authService config.Service, globalService service.Service) g
 			return
 		}
 
+		// if utils {
+
+		// }
+
 		c.Set("currentUser", user)
 
 	}
