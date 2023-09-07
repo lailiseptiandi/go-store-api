@@ -1,8 +1,8 @@
 package repository
 
 import (
-	"github.com/lailiseptiandi/golang-toko-online/config"
-	"github.com/lailiseptiandi/golang-toko-online/models"
+	"github.com/lailiseptiandi/go-store-api/config"
+	"github.com/lailiseptiandi/go-store-api/models"
 	"gorm.io/gorm"
 )
 

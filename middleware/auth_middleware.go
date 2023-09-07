@@ -6,9 +6,9 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/golang-jwt/jwt/v4"
-	"github.com/lailiseptiandi/golang-toko-online/config"
-	"github.com/lailiseptiandi/golang-toko-online/helpers"
-	"github.com/lailiseptiandi/golang-toko-online/service"
+	"github.com/lailiseptiandi/go-store-api/config"
+	"github.com/lailiseptiandi/go-store-api/helpers"
+	"github.com/lailiseptiandi/go-store-api/service"
 )
 
 func AuthMiddleware(authService config.Service, globalService service.Service) gin.HandlerFunc {

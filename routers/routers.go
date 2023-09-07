@@ -2,11 +2,11 @@ package routers
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/lailiseptiandi/golang-toko-online/config"
-	"github.com/lailiseptiandi/golang-toko-online/handler"
-	"github.com/lailiseptiandi/golang-toko-online/middleware"
-	"github.com/lailiseptiandi/golang-toko-online/repository"
-	"github.com/lailiseptiandi/golang-toko-online/service"
+	"github.com/lailiseptiandi/go-store-api/config"
+	"github.com/lailiseptiandi/go-store-api/handler"
+	"github.com/lailiseptiandi/go-store-api/middleware"
+	"github.com/lailiseptiandi/go-store-api/repository"
+	"github.com/lailiseptiandi/go-store-api/service"
 )
 
 func InitRouter(router *gin.Engine) {

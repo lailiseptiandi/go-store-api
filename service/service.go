@@ -1,9 +1,9 @@
 package service
 
 import (
-	"github.com/lailiseptiandi/golang-toko-online/entity"
-	"github.com/lailiseptiandi/golang-toko-online/models"
-	"github.com/lailiseptiandi/golang-toko-online/repository"
+	"github.com/lailiseptiandi/go-store-api/entity"
+	"github.com/lailiseptiandi/go-store-api/models"
+	"github.com/lailiseptiandi/go-store-api/repository"
 )
 
 type Service interface {

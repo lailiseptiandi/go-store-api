@@ -1,6 +1,6 @@
 package entity
 
-import "github.com/lailiseptiandi/golang-toko-online/models"
+import "github.com/lailiseptiandi/go-store-api/models"
 
 type (
 	RegisterUserInput struct {
