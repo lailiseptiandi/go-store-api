@@ -2,7 +2,6 @@ package handler
 
 import (
 	"errors"
-	"fmt"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -15,7 +14,7 @@ func (h *globalHandler) RegisterUser(c *gin.Context) {
 	var input entity.RegisterUserInput
 
 	err := c.ShouldBindJSON(&input)
-	fmt.Println(input)
+
 	if err != nil {
 		errors := helpers.FormValidationError(err)
 		errorMessage := gin.H{"error": errors}
@@ -75,7 +74,7 @@ func (h *globalHandler) LoginUser(c *gin.Context) {
 	}
 
 	loginFormat := service.FormatUser(loginUser, token)
-	response := helpers.APIResponse("Login successfully", http.StatusOK, "error", loginFormat)
+	response := helpers.APIResponse("Login successfully", http.StatusOK, "success", loginFormat)
 	c.JSON(http.StatusOK, response)
 
 }
@@ -112,7 +111,7 @@ func (h *globalHandler) CheckEmailAvailable(c *gin.Context) {
 		metaMessage = "Email has been registered"
 	}
 
-	response := helpers.APIResponse(metaMessage, http.StatusOK, "error", data)
+	response := helpers.APIResponse(metaMessage, http.StatusOK, "success", data)
 	c.JSON(http.StatusOK, response)
 
 }
