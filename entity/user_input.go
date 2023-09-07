@@ -1,6 +1,6 @@
 package entity
 
-import "github.com/lailiseptiandi/golang-toko-online/model"
+import "github.com/lailiseptiandi/golang-toko-online/models"
 
 type (
 	RegisterUserInput struct {
@@ -22,6 +22,6 @@ type (
 
 	GetUserID struct {
 		ID   int `uri:"id" binding:"required"`
-		User model.User
+		User models.User
 	}
 )
