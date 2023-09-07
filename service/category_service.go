@@ -6,10 +6,10 @@ import (
 
 	"github.com/gosimple/slug"
 	"github.com/lailiseptiandi/golang-toko-online/entity"
-	"github.com/lailiseptiandi/golang-toko-online/model"
+	"github.com/lailiseptiandi/golang-toko-online/models"
 )
 
-func (s *service) GetCategory() ([]model.Category, error) {
+func (s *service) GetCategory() ([]models.Category, error) {
 
 	listCategory, err := s.repository.GetCategory()
 	if err != nil {
@@ -19,9 +19,9 @@ func (s *service) GetCategory() ([]model.Category, error) {
 	return listCategory, nil
 }
 
-func (s *service) CreateCategory(input entity.CreateCategoryInput) (model.Category, error) {
+func (s *service) CreateCategory(input entity.CreateCategoryInput) (models.Category, error) {
 
-	category := model.Category{}
+	category := models.Category{}
 	category.Name = input.Name
 	category.Slug = slug.Make(strings.ToLower(input.Name))
 
@@ -33,7 +33,7 @@ func (s *service) CreateCategory(input entity.CreateCategoryInput) (model.Catego
 	return newCategory, nil
 }
 
-func (s *service) CategoryByID(ID int) (model.Category, error) {
+func (s *service) CategoryByID(ID int) (models.Category, error) {
 	category, err := s.repository.CategoryBYID(ID)
 	if err != nil {
 		return category, err
@@ -45,7 +45,7 @@ func (s *service) CategoryByID(ID int) (model.Category, error) {
 	return category, nil
 }
 
-func (s *service) UpdateCategory(inputID entity.CategoryDetailInput, input entity.CreateCategoryInput) (model.Category, error) {
+func (s *service) UpdateCategory(inputID entity.CategoryDetailInput, input entity.CreateCategoryInput) (models.Category, error) {
 
 	category, err := s.repository.CategoryBYID(inputID.ID)
 	if category.ID != inputID.ID {
@@ -62,7 +62,7 @@ func (s *service) UpdateCategory(inputID entity.CategoryDetailInput, input entit
 	return updateCategory, nil
 }
 
-func (s *service) DeleteCategory(ID int) (model.Category, error) {
+func (s *service) DeleteCategory(ID int) (models.Category, error) {
 	category, err := s.repository.DeleteCategory(ID)
 	if err != nil {
 		return category, err

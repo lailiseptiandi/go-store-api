@@ -7,10 +7,10 @@ import (
 
 	"github.com/gosimple/slug"
 	"github.com/lailiseptiandi/golang-toko-online/entity"
-	"github.com/lailiseptiandi/golang-toko-online/model"
+	"github.com/lailiseptiandi/golang-toko-online/models"
 )
 
-func (s *service) GetProduct() ([]model.Product, error) {
+func (s *service) GetProduct() ([]models.Product, error) {
 
 	listProduct, err := s.repository.GetProduct()
 	if err != nil {
@@ -20,9 +20,9 @@ func (s *service) GetProduct() ([]model.Product, error) {
 	return listProduct, nil
 }
 
-func (s *service) CreateProduct(product entity.CreateProduct) (model.Product, error) {
+func (s *service) CreateProduct(product entity.CreateProduct) (models.Product, error) {
 
-	products := model.Product{
+	products := models.Product{
 		CategoryID:   product.CategoryID,
 		Name:         product.Name,
 		Slug:         slug.Make(strings.ToLower(product.Name)),
@@ -37,7 +37,7 @@ func (s *service) CreateProduct(product entity.CreateProduct) (model.Product, er
 	return newProduct, nil
 }
 
-func (s *service) ProductByID(ID int) (model.Product, error) {
+func (s *service) ProductByID(ID int) (models.Product, error) {
 	products, err := s.repository.ProductByID(ID)
 	fmt.Println("ini product ", products)
 	if err != nil {
@@ -49,12 +49,12 @@ func (s *service) ProductByID(ID int) (model.Product, error) {
 	return products, nil
 }
 
-func (s *service) UpdateProduct(ID int, product entity.CreateProduct) (model.Product, error) {
+func (s *service) UpdateProduct(ID int, product entity.CreateProduct) (models.Product, error) {
 	checkProduct, err := s.repository.ProductByID(ID)
 	if err != nil {
 		return checkProduct, err
 	}
-	products := model.Product{
+	products := models.Product{
 		CategoryID:   product.CategoryID,
 		Name:         product.Name,
 		Slug:         slug.Make(strings.ToLower(product.Name)),

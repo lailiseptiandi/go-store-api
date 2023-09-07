@@ -1,10 +1,10 @@
 package repository
 
-import "github.com/lailiseptiandi/golang-toko-online/model"
+import "github.com/lailiseptiandi/golang-toko-online/models"
 
-func (r *repository) GetCategory() ([]model.Category, error) {
+func (r *repository) GetCategory() ([]models.Category, error) {
 
-	var categories []model.Category
+	var categories []models.Category
 	err := r.db.Find(&categories).Error
 	if err != nil {
 		return categories, err
@@ -13,7 +13,7 @@ func (r *repository) GetCategory() ([]model.Category, error) {
 	return categories, nil
 }
 
-func (r *repository) CreateCategory(category model.Category) (model.Category, error) {
+func (r *repository) CreateCategory(category models.Category) (models.Category, error) {
 	err := r.db.Create(&category).Error
 	if err != nil {
 		return category, err
@@ -22,8 +22,8 @@ func (r *repository) CreateCategory(category model.Category) (model.Category, er
 	return category, nil
 }
 
-func (r *repository) CategoryBYID(ID int) (model.Category, error) {
-	var category model.Category
+func (r *repository) CategoryBYID(ID int) (models.Category, error) {
+	var category models.Category
 	err := r.db.Where("id=?", ID).Find(&category).Error
 	if err != nil {
 		return category, err
@@ -32,7 +32,7 @@ func (r *repository) CategoryBYID(ID int) (model.Category, error) {
 	return category, nil
 }
 
-func (r *repository) UpdateCategory(category model.Category) (model.Category, error) {
+func (r *repository) UpdateCategory(category models.Category) (models.Category, error) {
 	err := r.db.Save(&category).Error
 
 	if err != nil {
@@ -42,8 +42,8 @@ func (r *repository) UpdateCategory(category model.Category) (model.Category, er
 	return category, nil
 }
 
-func (r *repository) DeleteCategory(ID int) (model.Category, error) {
-	var category model.Category
+func (r *repository) DeleteCategory(ID int) (models.Category, error) {
+	var category models.Category
 	err := r.db.Where("id = ?", ID).Find(&category).Delete(&category).Error
 
 	if err != nil {

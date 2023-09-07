@@ -1,8 +1,6 @@
 package service
 
-import (
-	"github.com/lailiseptiandi/golang-toko-online/model"
-)
+import "github.com/lailiseptiandi/golang-toko-online/models"
 
 type UserFormatter struct {
 	ID      int    `json:"id"`
@@ -13,7 +11,7 @@ type UserFormatter struct {
 	Token   string `json:"token"`
 }
 
-func FormatUser(user model.User, Token string) UserFormatter {
+func FormatUser(user models.User, Token string) UserFormatter {
 	formatter := UserFormatter{
 		ID:      user.ID,
 		Name:    user.Name,
@@ -34,7 +32,7 @@ type FormateDetailUser struct {
 	Roles   string `json:"roles"`
 }
 
-func FormatDetailUser(user model.User) FormateDetailUser {
+func FormatDetailUser(user models.User) FormateDetailUser {
 	formatter := FormateDetailUser{
 		ID:      user.ID,
 		Name:    user.Name,
@@ -53,7 +51,7 @@ type CategoryFormater struct {
 	Slug string `json:"slug"`
 }
 
-func FormatCategory(category model.Category) CategoryFormater {
+func FormatCategory(category models.Category) CategoryFormater {
 	formater := CategoryFormater{
 		ID:   category.ID,
 		Name: category.Name,
@@ -63,7 +61,7 @@ func FormatCategory(category model.Category) CategoryFormater {
 	return formater
 }
 
-func FormatterCategory(categories []model.Category) []CategoryFormater {
+func FormatterCategory(categories []models.Category) []CategoryFormater {
 
 	categoryFormatter := []CategoryFormater{}
 	for _, category := range categories {

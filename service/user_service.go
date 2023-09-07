@@ -4,12 +4,12 @@ import (
 	"errors"
 
 	"github.com/lailiseptiandi/golang-toko-online/entity"
-	"github.com/lailiseptiandi/golang-toko-online/model"
+	"github.com/lailiseptiandi/golang-toko-online/models"
 	"golang.org/x/crypto/bcrypt"
 )
 
-func (s *service) RegisterUser(input entity.RegisterUserInput) (model.User, error) {
-	user := model.User{}
+func (s *service) RegisterUser(input entity.RegisterUserInput) (models.User, error) {
+	user := models.User{}
 	user.Name = input.Name
 	user.Email = input.Email
 	user.Address = input.Address
@@ -30,7 +30,7 @@ func (s *service) RegisterUser(input entity.RegisterUserInput) (model.User, erro
 
 }
 
-func (s *service) LoginUser(input entity.LoginInput) (model.User, error) {
+func (s *service) LoginUser(input entity.LoginInput) (models.User, error) {
 	email := input.Email
 	password := input.Password
 
@@ -70,7 +70,7 @@ func (s *service) CheckEmailUser(input entity.CheckEmailUser) (bool, error) {
 	return false, nil
 }
 
-func (s *service) GetUserByID(ID int) (model.User, error) {
+func (s *service) GetUserByID(ID int) (models.User, error) {
 	user, err := s.repository.FindByID(ID)
 	if err != nil {
 		return user, err
@@ -81,7 +81,7 @@ func (s *service) GetUserByID(ID int) (model.User, error) {
 	}
 	return user, nil
 }
-func (s *service) UpdateUser(inputID entity.GetUserID, input entity.RegisterUserInput) (model.User, error) {
+func (s *service) UpdateUser(inputID entity.GetUserID, input entity.RegisterUserInput) (models.User, error) {
 
 	user, err := s.repository.FindByID(inputID.ID)
 	if user.ID != inputID.ID {
