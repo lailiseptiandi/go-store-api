@@ -2,9 +2,12 @@ package config
 
 import (
 	"errors"
+	"os"
+	"path"
 	"time"
 
 	"github.com/golang-jwt/jwt/v4"
+	"github.com/joho/godotenv"
 )
 
 // ada dua fungsi yang harus dibikin
@@ -23,7 +26,12 @@ func NewService() *jwtService {
 	return &jwtService{}
 }
 
-var JWT_SECRET_KEY = []byte("toko_online_golang")
+func GetSecret() []byte {
+	godotenv.Load(path.Join(os.Getenv("HOME"), "../.env"))
+	var JWT_SECRET_KEY = []byte(os.Getenv("JWT_SECRET_KEY"))
+	return JWT_SECRET_KEY
+
+}
 
 // memanggil dalam bentuk global
 
@@ -31,10 +39,9 @@ func (s *jwtService) GenerateToken(userID int) (string, error) {
 
 	claim := jwt.MapClaims{}
 	claim["user_id"] = userID
-	claim["exp"] = time.Now().Add(time.Minute * 15).Unix()
+	claim["exp"] = time.Now().Add(time.Minute * 60).Unix()
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claim)
-	signedToken, err := token.SignedString(JWT_SECRET_KEY)
-
+	signedToken, err := token.SignedString(GetSecret())
 	if err != nil {
 		return signedToken, err
 	}
@@ -49,7 +56,7 @@ func (s *jwtService) ValidateToken(encodedToken string) (*jwt.Token, error) {
 		if !ok {
 			return nil, errors.New("invalid token")
 		}
-		return []byte(JWT_SECRET_KEY), nil
+		return GetSecret(), nil
 	})
 
 	if err != nil {
