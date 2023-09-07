@@ -15,6 +15,9 @@ type (
 		FindByID(ID int) (models.User, error)
 		UpdateUser(user models.User) (models.User, error)
 
+		// repository
+		ListPermission() ([]models.Permission, error)
+
 		// category
 		GetCategory() ([]models.Category, error)
 		CreateCategory(category models.Category) (models.Category, error)

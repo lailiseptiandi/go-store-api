@@ -10,7 +10,6 @@ import (
 )
 
 func GetConnection() *gorm.DB {
-	// godotenv.Load(path.Join(os.Getenv("HOME"), "../.env"))
 	LoadEnv()
 
 	host := os.Getenv("DB_HOST")
@@ -31,6 +30,8 @@ func MigrateDatabase(db *gorm.DB) {
 	db.AutoMigrate(&models.Category{})
 	db.AutoMigrate(&models.Product{})
 	db.AutoMigrate(&models.ProductImage{})
+	db.AutoMigrate(&models.Permission{})
+	db.AutoMigrate(&models.RolePermission{})
 }
 
 func DisconnectDB(db *gorm.DB) {
