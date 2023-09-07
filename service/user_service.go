@@ -10,10 +10,14 @@ import (
 
 func (s *service) RegisterUser(input entity.RegisterUserInput) (models.User, error) {
 	user := models.User{}
+	if input.Roles == "admin" {
+		return user, errors.New("Not registered roles admin")
+
+	}
 	user.Name = input.Name
 	user.Email = input.Email
 	user.Address = input.Address
-	user.Roles = "user"
+	user.Roles = input.Roles
 	password, err := bcrypt.GenerateFromPassword([]byte(input.Password), bcrypt.MinCost)
 	if err != nil {
 		return user, err
