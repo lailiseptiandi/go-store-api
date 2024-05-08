@@ -89,5 +89,6 @@ func rolePermissionSeeder(db *gorm.DB) error {
 			return err
 		}
 	}
+	tx.Commit()
 	return nil
 }
