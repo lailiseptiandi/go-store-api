@@ -3,9 +3,9 @@ package models
 import "time"
 
 type User struct {
-	ID        int `gorm:"primarykey"`
+	ID        int    `gorm:"primarykey"`
+	Email     string `gorm:"unique"`
 	Name      string
-	Email     string
 	Password  string
 	Token     string
 	Address   string

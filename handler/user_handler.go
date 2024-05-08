@@ -1,12 +1,15 @@
 package handler
 
 import (
+	"encoding/json"
 	"errors"
 	"net/http"
+	"time"
 
 	"github.com/gin-gonic/gin"
 	"github.com/lailiseptiandi/go-store-api/entity"
 	"github.com/lailiseptiandi/go-store-api/helpers"
+	"github.com/lailiseptiandi/go-store-api/models"
 )
 
 func (h *globalHandler) RegisterUser(c *gin.Context) {
@@ -188,4 +191,30 @@ func (h *globalHandler) GetUserByID(c *gin.Context) {
 	formatUser := entity.FormatDetailUser(user)
 	response := helpers.APIResponse("List User", http.StatusBadRequest, "success", formatUser)
 	c.JSON(http.StatusBadRequest, response)
+}
+
+func (h *globalHandler) ListUser(c *gin.Context) {
+
+	user, err := h.redisClient.Get(c, "users").Result()
+	if err == nil {
+		// redist data users cache
+		var userList []models.User
+		json.Unmarshal([]byte(user), &userList)
+		formatUser := entity.FormatListlUser(userList)
+		response := helpers.APIResponse("List User", http.StatusOK, "success", formatUser)
+		c.JSON(http.StatusOK, response)
+		return
+	}
+
+	users, err := h.globalService.ListUser()
+	if err != nil {
+		response := helpers.APIResponse(err.Error(), http.StatusBadRequest, "error", nil)
+		c.JSON(http.StatusBadRequest, response)
+		return
+	}
+	userJson, _ := json.Marshal(users)
+	h.redisClient.Set(c, "users", userJson, 1*time.Hour)
+	formatUser := entity.FormatListlUser(users)
+	response := helpers.APIResponse("List User", http.StatusOK, "success", formatUser)
+	c.JSON(http.StatusOK, response)
 }

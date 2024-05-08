@@ -5,10 +5,10 @@ import "github.com/lailiseptiandi/go-store-api/models"
 type UserFormatter struct {
 	ID      int    `json:"id"`
 	Name    string `json:"name"`
-	Email   string `json:"email"`
+	Email   string `json:"email,omitempty"`
 	Address string `json:"address"`
-	Roles   string `json:"roles"`
-	Token   string `json:"token"`
+	Roles   string `json:"roles,omitempty"`
+	Token   string `json:"token,omitempty"`
 }
 
 func FormatUser(user models.User, Token string) UserFormatter {
@@ -39,6 +39,19 @@ func FormatDetailUser(user models.User) FormateDetailUser {
 		Email:   user.Email,
 		Address: user.Address,
 		Roles:   user.Roles,
+	}
+	return formatter
+}
+
+func FormatListlUser(users []models.User) []UserFormatter {
+	formatter := make([]UserFormatter, 0)
+	for _, u := range users {
+		userFormat := UserFormatter{
+			ID:      u.ID,
+			Name:    u.Name,
+			Address: u.Address,
+		}
+		formatter = append(formatter, userFormat)
 	}
 	return formatter
 }
