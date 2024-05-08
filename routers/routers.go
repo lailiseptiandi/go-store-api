@@ -23,7 +23,7 @@ func InitRouter(r *gin.Engine, db *gorm.DB, redisClient *redis.Client) {
 	router.POST("/register", globalHandler.RegisterUser)
 	router.POST("/login", globalHandler.LoginUser)
 	router.POST("/check-email", globalHandler.CheckEmailAvailable)
-	router.GET("/test", globalHandler.ListUser)
+	router.GET("/users", globalHandler.ListUser)
 	router.PUT("/users/:id", middleware.AuthMiddleware(authService, globalService), globalHandler.UpdateUser)
 	router.GET("/users/:id", middleware.AuthMiddleware(authService, globalService), globalHandler.GetUserByID)
 
