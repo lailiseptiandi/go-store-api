@@ -7,20 +7,23 @@ import (
 	"github.com/lailiseptiandi/go-store-api/middleware"
 	"github.com/lailiseptiandi/go-store-api/repository"
 	"github.com/lailiseptiandi/go-store-api/service"
+	"github.com/redis/go-redis/v9"
+	"gorm.io/gorm"
 )
 
-func InitRouter(router *gin.Engine) {
-	globalRepository := repository.NewRepository()
+func InitRouter(r *gin.Engine, db *gorm.DB, redisClient *redis.Client) {
+	globalRepository := repository.NewRepository(db)
 
 	globalService := service.NewService(globalRepository)
 	authService := config.NewService()
 
-	globalHandler := handler.NewHandler(globalService, authService)
+	globalHandler := handler.NewHandler(globalService, authService, redisClient)
 	// categoryHandler := handler.NewHandlerCategory(globalService, authService)
-
+	router := r.Group("/api/v1")
 	router.POST("/register", globalHandler.RegisterUser)
 	router.POST("/login", globalHandler.LoginUser)
 	router.POST("/check-email", globalHandler.CheckEmailAvailable)
+	router.GET("/test", globalHandler.ListUser)
 	router.PUT("/users/:id", middleware.AuthMiddleware(authService, globalService), globalHandler.UpdateUser)
 	router.GET("/users/:id", middleware.AuthMiddleware(authService, globalService), globalHandler.GetUserByID)
 

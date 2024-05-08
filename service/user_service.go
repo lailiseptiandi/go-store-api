@@ -85,6 +85,7 @@ func (s *service) GetUserByID(ID int) (models.User, error) {
 	}
 	return user, nil
 }
+
 func (s *service) UpdateUser(inputID entity.GetUserID, input entity.RegisterUserInput) (models.User, error) {
 
 	user, err := s.repository.FindByID(inputID.ID)
@@ -106,7 +107,13 @@ func (s *service) UpdateUser(inputID entity.GetUserID, input entity.RegisterUser
 	if err != nil {
 		return updateUser, err
 	}
-
 	return updateUser, nil
+}
 
+func (s *service) ListUser() ([]models.User, error) {
+	user, err := s.repository.ListUser()
+	if err != nil {
+		return user, err
+	}
+	return user, nil
 }

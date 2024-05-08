@@ -5,11 +5,12 @@ import (
 	"os"
 
 	"github.com/lailiseptiandi/go-store-api/models"
+	"github.com/redis/go-redis/v9"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )
 
-func GetConnection() *gorm.DB {
+func MysqlConnection() *gorm.DB {
 	LoadEnv()
 
 	host := os.Getenv("DB_HOST")
@@ -22,7 +23,21 @@ func GetConnection() *gorm.DB {
 	if err != nil {
 		panic("Failed to connect database")
 	}
+	fmt.Println("Successfully connected mysql database")
 	return db
+}
+
+func RedisConnection() *redis.Client {
+	redisHost := os.Getenv("REDIS_HOST")
+	redisPort := os.Getenv("REDIS_PORT")
+	redisPassword := os.Getenv("REDIS_PASSWORD")
+	addr := fmt.Sprintf("%s:%s", redisHost, redisPort)
+	redisClient := redis.NewClient(&redis.Options{
+		Addr:     addr,
+		Password: redisPassword,
+	})
+	fmt.Println("Successfully connected redis")
+	return redisClient
 }
 
 func MigrateDatabase(db *gorm.DB) {

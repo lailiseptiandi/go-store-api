@@ -1,7 +1,6 @@
 package repository
 
 import (
-	"github.com/lailiseptiandi/go-store-api/config"
 	"github.com/lailiseptiandi/go-store-api/models"
 	"gorm.io/gorm"
 )
@@ -14,6 +13,7 @@ type (
 		FindByEmail(email string) (models.User, error)
 		FindByID(ID int) (models.User, error)
 		UpdateUser(user models.User) (models.User, error)
+		ListUser() ([]models.User, error)
 
 		// repository
 		ListPermission() ([]models.Permission, error)
@@ -44,6 +44,6 @@ type repository struct {
 	db *gorm.DB
 }
 
-func NewRepository() *repository {
-	return &repository{config.GetConnection()}
+func NewRepository(db *gorm.DB) *repository {
+	return &repository{db}
 }

@@ -14,6 +14,7 @@ type Service interface {
 	CheckEmailUser(input entity.CheckEmailUser) (bool, error)
 	GetUserByID(ID int) (models.User, error)
 	UpdateUser(inputID entity.GetUserID, input entity.RegisterUserInput) (models.User, error)
+	ListUser() ([]models.User, error)
 
 	// category
 	GetCategory() ([]models.Category, error)
