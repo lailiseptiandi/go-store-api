@@ -43,7 +43,7 @@ func FormatDetailUser(user models.User) FormateDetailUser {
 	return formatter
 }
 
-func FormatListlUser(users []models.User) []UserFormatter {
+func FormatListUser(users []models.User) []UserFormatter {
 	formatter := make([]UserFormatter, 0)
 	for _, u := range users {
 		userFormat := UserFormatter{

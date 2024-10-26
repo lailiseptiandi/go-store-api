@@ -200,7 +200,7 @@ func (h *globalHandler) ListUser(c *gin.Context) {
 		// redist data users cache
 		var userList []models.User
 		json.Unmarshal([]byte(user), &userList)
-		formatUser := entity.FormatListlUser(userList)
+		formatUser := entity.FormatListUser(userList)
 		response := helpers.APIResponse("List User", http.StatusOK, "success", formatUser)
 		c.JSON(http.StatusOK, response)
 		return
@@ -214,7 +214,7 @@ func (h *globalHandler) ListUser(c *gin.Context) {
 	}
 	userJson, _ := json.Marshal(users)
 	h.redisClient.Set(c, "users", userJson, 1*time.Hour)
-	formatUser := entity.FormatListlUser(users)
+	formatUser := entity.FormatListUser(users)
 	response := helpers.APIResponse("List User", http.StatusOK, "success", formatUser)
 	c.JSON(http.StatusOK, response)
 }
